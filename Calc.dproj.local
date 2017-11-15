@@ -2,8 +2,8 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2017/11/12 22:06:53.000.533,=C:\Users\mgarcia\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
-    <Transaction>2017/11/12 22:07:09.000.680,C:\Users\mgarcia\Documents\Embarcadero\Studio\Projects\Unit3.pas=E:\Nova Calculadora\Calculadora.pas</Transaction>
-    <Transaction>2017/11/12 22:07:09.000.680,C:\Users\mgarcia\Documents\Embarcadero\Studio\Projects\Unit3.dfm=E:\Nova Calculadora\Calculadora.dfm</Transaction>
-    <Transaction>2017/11/12 22:07:35.000.732,C:\Users\mgarcia\Documents\Embarcadero\Studio\Projects\Project2.dproj=E:\Nova Calculadora\Calc.dproj</Transaction>
+    <Transaction>2017/11/12 22:07:09.000.680,E:\Nova Calculadora\Calculadora.pas=C:\Users\mgarcia\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2017/11/12 22:07:09.000.680,E:\Nova Calculadora\Calculadora.dfm=C:\Users\mgarcia\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
+    <Transaction>2017/11/12 22:07:35.000.732,E:\Nova Calculadora\Calc.dproj=C:\Users\mgarcia\Documents\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
   </Transactions>
 </BorlandProject>

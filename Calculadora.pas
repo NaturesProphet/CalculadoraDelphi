@@ -45,9 +45,9 @@ type
     procedure opsub_BClick(Sender: TObject);     //efetua uma subtração
     procedure opmult_BClick(Sender: TObject);    //efetua uma multiplicação
     procedure opdiv_BClick(Sender: TObject);     //efetua uma divisão
-    procedure opcalc_BClick(Sender: TObject);
-    procedure opcent_BClick(Sender: TObject);
-    procedure opinverso_BClick(Sender: TObject);    //processa e exibe o valor final
+    procedure opcalc_BClick(Sender: TObject);    //processa e exibe o valor final
+    procedure opcent_BClick(Sender: TObject);    //processa porcentagems
+    procedure opinverso_BClick(Sender: TObject); //processa inversões
   end;
 
 var
