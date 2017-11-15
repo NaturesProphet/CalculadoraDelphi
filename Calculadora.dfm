@@ -1,7 +1,7 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Form3'
+  Caption = 'Calculadora Elementar em Delphi'
   ClientHeight = 512
   ClientWidth = 413
   Color = clGrayText
@@ -86,6 +86,7 @@ object Form3: TForm3
     Font.Style = []
     ParentFont = False
     TabOrder = 4
+    OnClick = opcent_BClick
   end
   object num4_B: TButton
     Left = 6
@@ -160,6 +161,7 @@ object Form3: TForm3
     Font.Style = []
     ParentFont = False
     TabOrder = 9
+    OnClick = opinverso_BClick
   end
   object num1_B: TButton
     Left = 6
@@ -309,7 +311,9 @@ object Form3: TForm3
     Font.Height = -35
     Font.Name = 'Consolas'
     Font.Style = [fsBold]
+    NumbersOnly = True
     ParentFont = False
+    ReadOnly = True
     TabOrder = 19
   end
   object memo: TMemo
