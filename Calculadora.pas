@@ -8,6 +8,7 @@
 
  Disponivel sob Licença GPL 3.0 em https://github.com/NaturesProphet
  código compatível com wine para rodar no Linux ;)
+ testado no Debian 9 "Stretch" amd64, Windows 10 x64 e Windows 7 x32
 }
 
 unit Calculadora;
