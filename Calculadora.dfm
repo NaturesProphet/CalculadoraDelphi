@@ -11,6 +11,7 @@ object CalcForm: TCalcForm
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poDesktopCenter
   ShowHint = True
@@ -327,6 +328,7 @@ object CalcForm: TCalcForm
     Top = 8
     Width = 398
     Height = 49
+    Cursor = crIBeam
     Alignment = taRightJustify
     AutoSize = False
     Color = clSilver
@@ -352,6 +354,7 @@ object CalcForm: TCalcForm
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+    ReadOnly = True
     ScrollBars = ssVertical
     TabOrder = 20
   end
