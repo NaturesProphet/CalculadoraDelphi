@@ -1,23 +1,29 @@
-object Form3: TForm3
+object CalcForm: TCalcForm
   Left = 0
   Top = 0
   Caption = 'Calculadora Elementar em Delphi'
   ClientHeight = 512
-  ClientWidth = 413
+  ClientWidth = 414
   Color = clGrayText
+  TransparentColorValue = clCream
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesktopCenter
+  ShowHint = True
+  Visible = True
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
   object num7_B: TButton
-    Left = 6
+    Left = 7
     Top = 63
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '7'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -29,10 +35,11 @@ object Form3: TForm3
     OnClick = num7_BClick
   end
   object num8_B: TButton
-    Left = 87
+    Left = 88
     Top = 63
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '8'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -44,10 +51,11 @@ object Form3: TForm3
     OnClick = num8_BClick
   end
   object num9_B: TButton
-    Left = 168
+    Left = 169
     Top = 63
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '9'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -59,10 +67,11 @@ object Form3: TForm3
     OnClick = num9_BClick
   end
   object opdiv_B: TButton
-    Left = 249
+    Left = 250
     Top = 63
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '/'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -74,10 +83,11 @@ object Form3: TForm3
     OnClick = opdiv_BClick
   end
   object opcent_B: TButton
-    Left = 330
+    Left = 331
     Top = 63
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '%'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -89,10 +99,11 @@ object Form3: TForm3
     OnClick = opcent_BClick
   end
   object num4_B: TButton
-    Left = 6
+    Left = 7
     Top = 134
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '4'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -104,10 +115,11 @@ object Form3: TForm3
     OnClick = num4_BClick
   end
   object num5_B: TButton
-    Left = 87
+    Left = 88
     Top = 134
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '5'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -119,10 +131,11 @@ object Form3: TForm3
     OnClick = num5_BClick
   end
   object num6_B: TButton
-    Left = 168
+    Left = 169
     Top = 134
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '6'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -134,10 +147,11 @@ object Form3: TForm3
     OnClick = num6_BClick
   end
   object opmult_B: TButton
-    Left = 249
+    Left = 250
     Top = 134
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = 'x'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -149,10 +163,11 @@ object Form3: TForm3
     OnClick = opmult_BClick
   end
   object opinverso_B: TButton
-    Left = 330
+    Left = 331
     Top = 134
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '1/x'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -164,10 +179,11 @@ object Form3: TForm3
     OnClick = opinverso_BClick
   end
   object num1_B: TButton
-    Left = 6
+    Left = 7
     Top = 205
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -179,10 +195,11 @@ object Form3: TForm3
     OnClick = num1_BClick
   end
   object num2_B: TButton
-    Left = 87
+    Left = 88
     Top = 205
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '2'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -194,10 +211,11 @@ object Form3: TForm3
     OnClick = num2_BClick
   end
   object num3_B: TButton
-    Left = 168
+    Left = 169
     Top = 205
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '3'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -209,10 +227,11 @@ object Form3: TForm3
     OnClick = num3_BClick
   end
   object opsub_B: TButton
-    Left = 249
+    Left = 250
     Top = 205
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '-'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -224,10 +243,11 @@ object Form3: TForm3
     OnClick = opsub_BClick
   end
   object Clear_B: TButton
-    Left = 6
+    Left = 7
     Top = 276
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = 'C'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -239,10 +259,11 @@ object Form3: TForm3
     OnClick = Clear_BClick
   end
   object num0_B: TButton
-    Left = 87
+    Left = 88
     Top = 276
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '0'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -254,10 +275,11 @@ object Form3: TForm3
     OnClick = num0_BClick
   end
   object virg_B: TButton
-    Left = 168
+    Left = 169
     Top = 276
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = ','
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -269,10 +291,11 @@ object Form3: TForm3
     OnClick = virg_BClick
   end
   object opsoma_B: TButton
-    Left = 249
+    Left = 250
     Top = 276
     Width = 75
     Height = 65
+    Cursor = crHandPoint
     Caption = '+'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -284,10 +307,11 @@ object Form3: TForm3
     OnClick = opsoma_BClick
   end
   object opcalc_B: TButton
-    Left = 330
+    Left = 331
     Top = 205
     Width = 75
     Height = 136
+    Cursor = crHandPoint
     Caption = '='
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -299,7 +323,7 @@ object Form3: TForm3
     OnClick = opcalc_BClick
   end
   object visor: TEdit
-    Left = 7
+    Left = 8
     Top = 8
     Width = 398
     Height = 49
@@ -319,7 +343,7 @@ object Form3: TForm3
   object memo: TMemo
     Left = 8
     Top = 347
-    Width = 397
+    Width = 398
     Height = 157
     Color = clWindowFrame
     Font.Charset = DEFAULT_CHARSET
