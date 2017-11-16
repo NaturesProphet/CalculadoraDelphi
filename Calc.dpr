@@ -2,13 +2,13 @@ program Calc;
 
 uses
   Vcl.Forms,
-  Calculadora in 'Calculadora.pas' {Form3};
+  Calculadora in 'Calculadora.pas' {CalcForm};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm3, Form3);
+  Application.CreateForm(TCalcForm, CalcForm);
   Application.Run;
 end.

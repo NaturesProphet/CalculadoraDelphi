@@ -20,7 +20,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus;
 
 type
-  TForm3 = class(TForm)
+  TCalcForm = class(TForm)
 
     //DECLARAÇÃO DOS BOTÕES
     num0_B: TButton;                             //botao 0
@@ -68,10 +68,13 @@ type
     procedure opinverso_BClick(Sender: TObject); //processa inversões
     procedure opcalc_BClick(Sender: TObject);    //processa e exibe o valor final
 
+    //esta procedure gigante abaixo le os eventos do teclado
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+
   end;
 
 var
-  Form3: TForm3;
+  CalcForm: TCalcForm;            //  instancía a janela da calculadora
   //CABEÇALHO DE PROCESSAMENTO
   //essas 3 variaveis comandam o fluxo dos processos neste programa
   subtotal        :       Double; //  armazena os valores calculados
@@ -80,7 +83,7 @@ var
 
 implementation
 
-{$R *.dfm}
+{$R *.dfm}   //se apagar essa linha da pau !!!
 {
   esta sub-rotina processa os valores inseridos de maneira iterativa,
   verificando a operação imediatamente anterior à atual e efetuando
@@ -141,7 +144,7 @@ begin
 
   //if para prevenir erro de metodo incorreto (correção da falha)
   if ( log <> ('ERRO: Divisão por 0'+ #13#10) ) then begin
-  //se uma divisão po zero não ocorreu, este é o procedimento normal
+  //se uma divisão por zero não ocorreu, este é o procedimento normal
   operacao              :=      metodo;
   log                   :=      log + metodo + ' '; // trecho de log da operacao
   end else begin
@@ -157,18 +160,19 @@ end;
 
 
 //reseta a calculadora limpando o cabeçalho de processamento
-procedure TForm3.Clear_BClick(Sender: TObject);
+procedure TCalcForm.Clear_BClick(Sender: TObject);
 begin
   subtotal        :=          0.0;
   operacao        :=          '0';
   visor.Clear();
+  opcalc_B.SetFocus;
 end;
 
 
 
 
 //insere uma virgula com segurança
-procedure TForm3.virg_BClick(Sender: TObject);
+procedure TCalcForm.virg_BClick(Sender: TObject);
 begin
    if (Pos(',', visor.Text) = 0) then
    //verificação para garantir que não exista mais do que 1 virgula no numero
@@ -177,100 +181,109 @@ begin
       //evito que saia um numero quebrado sem definir uma unidade
       visor.Text := visor.Text + ',';
     end;  //fim do if
+    opcalc_B.SetFocus;
   end;
 
 
 
-  
+
 //escreve o 0 no visor com segurança, evitando que haja mais de um 0 no começo
-procedure TForm3.num0_BClick(Sender: TObject);
+procedure TCalcForm.num0_BClick(Sender: TObject);
 begin
   if (visor.Text <> '0') then
     //verifico se a string atual é '0' para evitar strings como '000000...'
     visor.Text := visor.Text + '0';
+    opcalc_B.SetFocus;
 end;
 
 
 
 
 //escreve um 1 no visor
-procedure TForm3.num1_BClick(Sender: TObject);
+procedure TCalcForm.num1_BClick(Sender: TObject);
 begin
   visor.Text := visor.Text + '1';
+  opcalc_B.SetFocus;
 end;
 
 
 
 
 //escreve um 2 no visor
-procedure TForm3.num2_BClick(Sender: TObject);
+procedure TCalcForm.num2_BClick(Sender: TObject);
 begin
   visor.Text := visor.Text + '2';
+  opcalc_B.SetFocus;
 end;
-
 
 
 
 
 //escreve um 3 no visor
-procedure TForm3.num3_BClick(Sender: TObject);
+procedure TCalcForm.num3_BClick(Sender: TObject);
 begin
   visor.Text := visor.Text + '3';
+  opcalc_B.SetFocus;
 end;
 
 
 
 
-
 //escreve um 4 no visor
-procedure TForm3.num4_BClick(Sender: TObject);
+procedure TCalcForm.num4_BClick(Sender: TObject);
 begin
   visor.Text := visor.Text + '4';
+  opcalc_B.SetFocus;
 end;
 
 
 
 
 //escreve um 5 no visor
-procedure TForm3.num5_BClick(Sender: TObject);
+procedure TCalcForm.num5_BClick(Sender: TObject);
 begin
   visor.Text := visor.Text + '5';
+  opcalc_B.SetFocus;
 end;
 
 
 
 
 //escreve um 6 no visor
-procedure TForm3.num6_BClick(Sender: TObject);
+procedure TCalcForm.num6_BClick(Sender: TObject);
 begin
   visor.Text := visor.Text + '6';
+  opcalc_B.SetFocus;
 end;
 
 
 
 
 //escreve um 7 no visor
-procedure TForm3.num7_BClick(Sender: TObject);
+procedure TCalcForm.num7_BClick(Sender: TObject);
 begin
   visor.Text := visor.Text + '7';
+  opcalc_B.SetFocus;
 end;
 
 
 
 
 //escreve um 8 no visor
-procedure TForm3.num8_BClick(Sender: TObject);
+procedure TCalcForm.num8_BClick(Sender: TObject);
 begin
   visor.Text := visor.Text + '8';
+  opcalc_B.SetFocus;
 end;
 
 
 
 
 //escreve um 9 no visor
-procedure TForm3.num9_BClick(Sender: TObject);
+procedure TCalcForm.num9_BClick(Sender: TObject);
 begin
   visor.Text := visor.Text + '9';
+  opcalc_B.SetFocus;
 end;
 
 
@@ -278,11 +291,10 @@ end;
 
 //PROCESSA O VALOR FINAL E EXIBE O LOG !  invocado pelo botão '='
 //parece com a procedure calcula(), porém finaliza as iterações e exibe o log
-procedure TForm3.opcalc_BClick(Sender: TObject);
+procedure TCalcForm.opcalc_BClick(Sender: TObject);
 
 var
   valor           :       double; //armazena um numero temporario lido do visor
-
   
 begin
   if (visor.Text <> '') then //se o usuario não estiver de sacanagem com os botoes
@@ -335,13 +347,14 @@ begin
   memo.Text := log;
 
 end; //fim do IF
+  opcalc_B.SetFocus;
 end;
 
 
 
 
 //efetua a divisão
-procedure TForm3.opdiv_BClick(Sender: TObject);
+procedure TCalcForm.opdiv_BClick(Sender: TObject);
 
 begin
   if (visor.Text <> '') then //se o usuario não estiver de sacanagem com os botoes
@@ -349,6 +362,7 @@ begin
     calcula('/', StrToFloat(visor.Text));
     visor.Clear();
   end;
+  opcalc_B.SetFocus;
 end;
 
 
@@ -356,46 +370,49 @@ end;
 
 
 //efetua multiplicação
-procedure TForm3.opmult_BClick(Sender: TObject);
+procedure TCalcForm.opmult_BClick(Sender: TObject);
 begin
   if (visor.Text <> '') then //se o usuario não estiver de sacanagem com os botoes
   begin
     calcula('x', StrToFloat(visor.Text));
     visor.Clear();
   end;
+  opcalc_B.SetFocus;
 end;
 
 
 
 
 //efetua soma
-procedure TForm3.opsoma_BClick(Sender: TObject);
+procedure TCalcForm.opsoma_BClick(Sender: TObject);
 begin
   if (visor.Text <> '') then //se o usuario não estiver de sacanagem com os botoes
   begin
     calcula('+', StrToFloat(visor.Text));
     visor.Clear();
   end;
+  opcalc_B.SetFocus;
 end;
 
 
 
 
 //efetua subtração
-procedure TForm3.opsub_BClick(Sender: TObject);
+procedure TCalcForm.opsub_BClick(Sender: TObject);
 begin
   if (visor.Text <> '') then //se o usuario não estiver de sacanagem com os botoes
   begin
     calcula('-', StrToFloat(visor.Text));
     visor.Clear();
   end;
+  opcalc_B.SetFocus;
 end;
 
 
 
 
 //efetua diretamente o processamento de porcentagem
-procedure TForm3.opcent_BClick(Sender: TObject);
+procedure TCalcForm.opcent_BClick(Sender: TObject);
 var
   num   :     Double;
 begin
@@ -405,14 +422,14 @@ begin
     log         :=    log + '<' + num.ToString + '% de '+subtotal.ToString+ '>' + ' ';
     visor.Text  :=    (subtotal * (num/100)).ToString;
   end;
+  opcalc_B.SetFocus;
 end;
 
 
 
 
-
 //efetua diretamente o processamento do inverso de x
-procedure TForm3.opinverso_BClick(Sender: TObject);
+procedure TCalcForm.opinverso_BClick(Sender: TObject);
 var
   num   :     Double;
 begin
@@ -427,8 +444,77 @@ begin
       ShowMessage('Não sou Chuck Norris.' +
       'Não tenho poderes para inverter um zero');
   end;
+  opcalc_B.SetFocus;
 end;
 
 
 
-end.      //fim do código !!
+
+//PROCESSA OS EVENTOS DO TECLADO
+procedure TCalcForm.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+  teste: string;
+begin
+  if (key = VK_NUMPAD0) then
+    num0_B.Click;
+
+  if (key = VK_NUMPAD1) then
+    num1_B.Click;
+
+  if (key = VK_NUMPAD2) then
+    num2_B.Click;
+
+  if (key = VK_NUMPAD3) then
+    num3_B.Click;
+
+  if (key = VK_NUMPAD4) then
+    num4_B.Click;
+
+  if (key = VK_NUMPAD5) then
+    num5_B.Click;
+
+  if (key = VK_NUMPAD6) then
+    num6_B.Click;
+
+  if (key = VK_NUMPAD7) then
+    num7_B.Click;
+
+  if (key = VK_NUMPAD8) then
+    num8_B.Click;
+
+  if (key = VK_NUMPAD9) then
+    num9_B.Click;
+
+  if (key = VK_ADD) then
+    opsoma_B.Click;
+
+  if (key = VK_SUBTRACT) then
+    opsub_B.Click;
+
+  if (key = VK_MULTIPLY) then
+    opmult_B.Click;
+
+  if (key = VK_DIVIDE) then
+    opdiv_B.Click;
+
+  if ( key = VK_RETURN ) or (key.ToString = '13') then
+    opcalc_B.Click;
+
+  if ( key = VK_ESCAPE) then
+    Clear_B.Click;
+
+  if (key.ToString = '110') then
+    virg_B.Click;
+
+  if (key.ToString = '53') then
+    opcent_B.Click;
+
+  //não atribui nenhum botão para o inverso de x por nao ter nenhum q faça sentido
+
+end;
+
+
+
+
+end.      // That's All Folks !
