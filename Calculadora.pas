@@ -113,12 +113,19 @@ begin
 
     '/':
         begin
-          if (numero <> 0) then //evitar divisões por 0
+          if (numero <> 0) then   //tratar divisões por 0
           begin
             subtotal      :=      subtotal / numero;
             log           :=      log + numero.ToString + ' ';
-          end;
-        end;
+          end else begin
+            log           :=      'ERRO: Divisão por 0'+ #13#10;
+            ShowMessage('Não consigo dividir por 0.' + #13#10 +
+            'O único que ja fez isto foi Chuck Norris');
+            subtotal        :=          0.0;
+          end; //fim do IF
+        end;   //fim do case'/'
+
+
         {
           observe que processamentos de porcentagem e inversões são processados 
           "in-loco" no local em que forem invocados e não estão nesta subrotina
@@ -131,12 +138,19 @@ begin
         end;
 
   end; //fim do switch/case
-  
-  operacao              :=      metodo; 
-  //a instrução acima registra a operação a ser processada na proxima iteração
-  
+
+  //if para prevenir erro de metodo incorreto (correção da falha)
+  if ( log <> ('ERRO: Divisão por 0'+ #13#10) ) then begin
+  //se uma divisão po zero não ocorreu, este é o procedimento normal
+  operacao              :=      metodo;
   log                   :=      log + metodo + ' '; // trecho de log da operacao
-  
+  end else begin
+  //mas se uma divisão por zero aconteceu, preciso ajustar a operacao para não
+  //efetuar uma instrução indevida e o log para nao exibir esta operação
+    operacao            :=      '0';
+    log                 :=      log + ' '; // trecho de log da operacao
+  end;
+
 end;
 
 
@@ -296,13 +310,21 @@ begin
         end;
 
     '/':
-        begin
-          subtotal   :=   subtotal / valor;
-          log        :=   log + valor.ToString + ' = ' + subtotal.ToString + #13#10;
+         begin
+          if (valor <> 0) then   //tratar divisões por 0
+          begin
+            subtotal      :=      subtotal / valor;
+            log           :=      log + valor.ToString + ' = ' + subtotal.ToString + #13#10;
+          end else begin  //se o numero divisor for 0
+            log           :=      'ERRO: Divisão por 0'+ #13#10;
+            ShowMessage('Não consigo dividir por 0.' + #13#10 +
+            'O único que ja fez isto foi Chuck Norris');
+            operacao      :=      '0';
+          end;
         end;
 
     else
-        begin
+        begin  //entao x = x e nao tem nada pra fazer;
           subtotal   :=   valor;
           log        :=   log + valor.ToString + ' = ' + subtotal.ToString + #13#10;
         end;
@@ -314,7 +336,6 @@ begin
 
 end; //fim do IF
 end;
-//fim da procedure
 
 
 
@@ -323,8 +344,11 @@ end;
 procedure TForm3.opdiv_BClick(Sender: TObject);
 
 begin
-  calcula('/', StrToFloat(visor.Text));
-  visor.Clear();
+  if (visor.Text <> '') then //se o usuario não estiver de sacanagem com os botoes
+  begin
+    calcula('/', StrToFloat(visor.Text));
+    visor.Clear();
+  end;
 end;
 
 
@@ -334,8 +358,11 @@ end;
 //efetua multiplicação
 procedure TForm3.opmult_BClick(Sender: TObject);
 begin
-  calcula('x', StrToFloat(visor.Text));
-  visor.Clear();
+  if (visor.Text <> '') then //se o usuario não estiver de sacanagem com os botoes
+  begin
+    calcula('x', StrToFloat(visor.Text));
+    visor.Clear();
+  end;
 end;
 
 
@@ -344,8 +371,11 @@ end;
 //efetua soma
 procedure TForm3.opsoma_BClick(Sender: TObject);
 begin
-  calcula('+', StrToFloat(visor.Text));
-  visor.Clear();
+  if (visor.Text <> '') then //se o usuario não estiver de sacanagem com os botoes
+  begin
+    calcula('+', StrToFloat(visor.Text));
+    visor.Clear();
+  end;
 end;
 
 
@@ -354,8 +384,11 @@ end;
 //efetua subtração
 procedure TForm3.opsub_BClick(Sender: TObject);
 begin
-  calcula('-', StrToFloat(visor.Text));
-  visor.Clear();
+  if (visor.Text <> '') then //se o usuario não estiver de sacanagem com os botoes
+  begin
+    calcula('-', StrToFloat(visor.Text));
+    visor.Clear();
+  end;
 end;
 
 
@@ -366,9 +399,12 @@ procedure TForm3.opcent_BClick(Sender: TObject);
 var
   num   :     Double;
 begin
-  num         :=    StrToFloat(visor.Text);
-  log         :=    log + '<' + num.ToString + '% de '+subtotal.ToString+ '>' + ' ';
-  visor.Text  :=    (subtotal * (num/100)).ToString;
+  if (visor.Text <> '') then //se o usuario não estiver de sacanagem com os botoes
+  begin
+    num         :=    StrToFloat(visor.Text);
+    log         :=    log + '<' + num.ToString + '% de '+subtotal.ToString+ '>' + ' ';
+    visor.Text  :=    (subtotal * (num/100)).ToString;
+  end;
 end;
 
 
@@ -380,11 +416,18 @@ procedure TForm3.opinverso_BClick(Sender: TObject);
 var
   num   :     Double;
 begin
-  num         :=    StrToFloat(visor.Text);
-  log         :=    log + '<inversao de ' + num.ToString+ '>' + ' ';
-  visor.Text  :=    (1/num).ToString;
+  if (visor.Text <> '') then //se o usuario não estiver de sacanagem com os botoes
+  begin
+    num         :=    StrToFloat(visor.Text);
+    if ( num <> 0) then  //impedir divisões por 0
+    begin
+      log         :=    log + '<inversao de ' + num.ToString+ '>' + ' ';
+      visor.Text  :=    (1/num).ToString;
+    end else
+      ShowMessage('Não sou Chuck Norris.' +
+      'Não tenho poderes para inverter um zero');
+  end;
 end;
-
 
 
 
